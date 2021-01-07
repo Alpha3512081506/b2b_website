@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suo carrello
+{% endblock %}
+
+{% block body %}
+	<h1>
+		Suo carrello</h1>
+	{% if items|length > 0 %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Prodotto</th>
+					<th>Prezzo</th>
+					<th>Quantità</th>
+					<th>Totale</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+					{% if item %}
+						<tr>
+							<td>{{item.product.nomeStile}}</td>
+							<td>{{item.product.prezzo}}</td>
+							<td>
+								<a href="{{path("cart_add",{"id":item.product.id})}}?returnToCart=true" class="btn btn-primary btn-sm">
+									<i class="fa fa-plus"></i>
+								</a>
+
+								{{item.quantity}}
+								<a href="{{path("cart_decrement",{"id":item.product.id})}}" class="btn btn-primary btn-sm">
+									<i class="fa fa-minus"></i>
+								</a>
+							</td>
+							<td>{{item.total}}</td>
+							<td>
+								<a href="{{path("cart_delete",{"id":item.product.id})}}" class="btn btn-sm btn-danger">
+									<i class="fa fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">Total:</td>
+					<td colspan="2">{{total}}</td>
+				</tr>
+			</tfoot>
+
+		</table>
+		<hr>
+		<h1>conferma il suo ordine compilando questo modulo</h1>
+		{{form_start(confirmationform)}}
+		{{form_widget(confirmationform)}}
+		<button class="btn btn-success">confermo</button>
+		{{form_end(confirmationform)}}
+
+	{% else %}
+		<h1>Il Carrello è vuoto</h1>
+
+	{% endif %}
+{% endblock %}

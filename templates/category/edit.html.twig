@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!
+{% endblock %}
+
+{% block body %}
+	<div class="card bg-light my-5">
+		<div class="card-header text-center">
+			<h1>Editare La categoria</h1>
+		</div>
+		<div class="card-body">
+			{{form_start(formView)}}
+			{{form_label(formView)}}
+			{{form_widget(formView)}}
+			<button class="btn btn-primary" type="submit">Crea La Categoria</button>
+			{{form_end(formView)}}</div>
+
+	</div>
+
+{% endblock %}

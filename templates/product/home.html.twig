@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}nostri prodotti
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center">
+		Un Messaggio di benvenuto o un banniere imaggine
+	</h1>
+	<ol class="breadcrumb" class="my-5">
+		<li class="breadcrumb-item">
+			<a href="#">
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">
+						<i class="fa fa-home fa-2x"></i>Home</font>
+				</font>
+			</a>
+		</li>
+	</ol>
+	<div class="row">
+		{% for product in products %}
+			<div class="col-4">
+				<div class="card"><img src="{{product.coverImage}}" alt="imaggine {{product.nomeStile}}" class="img-fluid">
+
+					<div class="card-body">
+						<h1 class="card-title">{{product.nomeStile}}</h1>
+						<span class="badge badge-primary center">
+							<em>{{product.categoria.nomeCategoria}}</em>
+						</span>
+						<div class="card-text">
+							<span>{{product.marca|upper}}-{{product.dimensioniRAM|upper}}-{{product.dimensioniSchermo|upper}}-{{product.modelloCPU|upper}}-{{product.colore|upper}}</span>
+							<hr>
+
+							{{product.commento}}</div>
+
+						<a href="{{path('prodotto_show',{'slug_categoria':product.categoria.slug,'slug_prodotto':product.slug})}}" class="btn btn-primary btn-sm ">Dettagli</a>
+						<a href="{{path('cart_add',{'id':product.id})}}" class="btn btn-info btn-sm">Aggiungi al carrello</a>
+					</div>
+				</div>
+
+			</div>
+		{% endfor %}
+	</div>
+	<hr>
+	<h1 class="my-5 text-center">Servizi impeccabili</h1>
+	<div class="row">
+
+		{% include "shared/_assicurazione.html.twig" with {
+        'color' : 'primary',
+        'icone' : ' fa-truck',
+        'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
+
+    } %}
+		{% include "shared/_assicurazione.html.twig" with {
+        'color' : 'success',
+        'icone' : ' fa-check',
+        'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
+
+    } %}
+		{% include "shared/_assicurazione.html.twig" with {
+        'color' : 'warning',
+        'icone' : ' fa-lock',
+        'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
+
+    } %}
+	</div>
+
+
+{% endblock %}

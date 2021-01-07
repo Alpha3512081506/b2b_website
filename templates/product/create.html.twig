@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% form_theme formView _self %}
+
+
+{% block title %}Creazione di un prodotto
+{% endblock %}
+
+{% block body %}
+	<div class="card my-5">
+		<div class="card-header">
+			<h1 class="text-center">Crea Un Nuovo Prodotto</h1>
+		</div>
+		<div class="card-body">{{form_start(formView)}}
+			{{form_errors(formView)}}
+			<div class="row">
+				<div class="col">
+					{{form_row(formView.nomeStile)}}
+					{{form_row(formView.marca)}}
+					{{form_row(formView.colore)}}
+					{{form_row(formView.prezzo)}}
+					{{form_row(formView.categoria)}}
+
+				</div>
+				<div class="col">
+					{{form_row(formView.modelloCPU)}}
+					{{form_row(formView.dimensioniRAM)}}
+					{{form_row(formView.dimensioniSchermo)}}
+					{{form_row(formView.coverImage)}}
+					{{form_row(formView.commento)}}
+
+				</div>
+			</div>
+			<hr>
+
+
+			<button type="submit" class="btn btn-primary">
+				<i class="fas fa-save"></i>Creare Il Prodotto</button>
+			{{form_end(formView)}}
+
+		</div>
+	</div>
+{% endblock %}
+
+
+{# {% block _prodotto_imaggines_entry_row %}
+	{{form_widget(form)}}
+{% endblock %}
+{% block _prodotto_imaggines_widget %}
+	<h2>Poi aggiungere un imaggine</h2>
+	{{form_widget(form)}}
+	<div class="form-group" id="ad-image">
+		<button class="btn btn-primary">Ajouter une image</button>
+	</div>
+{% endblock %}
+{% block _prodotto_imaggines_entry_widget %}
+	<div class="row">
+		<div class="col-5">{{form_widget(form.linkImaggine)}}</div>
+		<div class="col-5">{{form_widget(form.caption)}}</div>
+		<button class="btn btn-danger">x</button>
+	</div>
+
+{% endblock %}
+ #}

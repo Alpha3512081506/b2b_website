@@ -1,0 +1,9 @@
+footer{
+    padding: 20px;
+    background: linear-gradient($pink,darken($pink,30));
+    p{
+        color:$pink;
+        font-size: $font-size-smal;
+        font-style: italic;
+    }
+}
