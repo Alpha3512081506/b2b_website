@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Hello CategoryController!
 {% endblock %}
@@ -12,7 +12,8 @@
 			{{form_start(formView)}}
 			{{form_label(formView)}}
 			{{form_widget(formView)}}
-			<button class="btn btn-primary" type="submit">Crea La Categoria</button>
+			<button class="btn btn-primary" type="submit">
+				<i class="fas fa-save"></i>Crea La Categoria</button>
 			{{form_end(formView)}}</div>
 
 	</div>

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}editar il profilo
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-3">&nbsp;</div>
+		<div class="col-md-6">
+			<div class="card primary bg-light">
+				<div class="card-header">
+					<h1 class="text-center">Editar il suo Profilo</h1>
+				</div>
+				<div class="card-body">
+					{{form_start(formAccountEdit)}}
+					{{form_widget(formAccountEdit)}}
+					<button class="btn btn-success btn-lg" type="submit">Edita</button>
+					{{form_end(formAccountEdit)}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

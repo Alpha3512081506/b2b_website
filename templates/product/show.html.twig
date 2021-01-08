@@ -7,7 +7,7 @@
 {% block body %}
 	<ol class="breadcrumb my-5">
 		<li class="breadcrumb-item">
-			<a href="{{path('home_index')}}">Home</a>
+			<a href="{{path('home_index')}}">RicomputerB2BShop</a>
 		</li>
 		<li class="breadcrumb-item">
 			<a href="{{path('prodotto_categorie', {'slug': product.categoria.slug})}}">{{product.categoria.nomeCategoria}}</a>
@@ -17,34 +17,10 @@
 	<h1 class="h1text-center">Prodotto:{{product.nomeStile}}({{product.prezzo/100}}
 		&euro;)</h1>
 	<div class="row">
-		<div class="col-4">
+		<div class="col-12 col-sm-12 col-md-4">
 
 			<div class="card">
-				<img
-				src="{{product.coverImage}}" alt="imaggine di {{product.nomeStile}}" class="img-fluid">
-				{# 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-																																																																																																	<ol class="carousel-indicators">
-																																																																																																		<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-																																																																																																		<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-																																																																																																		<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-																																																																																																	</ol>
-																																																																																																	<div class="carousel-inner">
-																																																																																																		{% for image in product.imaggines %}
-																																																																																																			<div class="carousel-item active">
-																																																																																																				<img src="{{image.linkImaggine}}" class="d-block w-100" alt="{{product.nomeStile}}">
-																																																																																																			</div>
-																																																																																																		{% endfor %}
-																																																																																												
-																																																																																																	</div>
-																																																																																																	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-																																																																																																		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-																																																																																																		<span class="visually-hidden">Previous</span>
-																																																																																																	</a>
-																																																																																																	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-																																																																																																		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-																																																																																																		<span class="visually-hidden">Next</span>
-																																																																																																	</a>
-																																																																																																</div> #}
+				<img src="{{product.coverImage}}" alt="imaggine di {{product.nomeStile}}" class="img-fluid">
 				<div class="card-body">
 
 					<p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor assumenda velit fugiat ex labore, aliquam quisquam voluptas placeat error repellat atque dolorem cupiditate nam iusto, deleniti totam, fuga cum rem maiores. Vitae debitis praesentium ex ab modi saepe possimus nostrum?</p>
@@ -54,7 +30,7 @@
 
 
 		</div>
-		<div class="col">
+		<div class="col-12 col-sm-12 col-md-4">
 			<span class="badge badge-primary">{{product.categoria.nomeCategoria}}</span>
 			<p>
 				{{product.commento}}</p>

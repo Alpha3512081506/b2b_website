@@ -31,21 +31,31 @@ class AppFixtures extends Fixture
         $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         $faker->addProvider(new \Bezhanov\Faker\Provider\Device($faker));
         $faker->addProvider(new \Mmo\Faker\PicsumProvider($faker));
-
+        $genres = ['male', 'female'];
+        $genre = $faker->randomElement($genres);
+        $picture = 'https://randomuser.me/api/portraits/';
+        $pictureId = $faker->numberBetween(1, 99) . '..jpg';
+        if ($genre == 'male') {
+            $picture = $picture . 'men/' . $pictureId;
+        } else {
+            $picture = $picture . 'women/' . $pictureId;
+        }
         $admin = new User;
-        $hash = $this->userPasswordEncoderInterface->encodePassword($admin, "password");
+        $hash = $this->userPasswordEncoderInterface->encodePassword($admin, "Admin123");
         $admin->setEmail("admin@gmail.com")
             ->setFullName("Admin")
             ->setPassword($hash)
-            ->setRoles(["ROLE_ADMIN"]);
+            ->setRoles(["ROLE_ADMIN"])
+            ->setAvatar('https://randomuser.me/api/portraits/men/80.jpg');
         $manager->persist($admin);
         $users = [];
         for ($u = 0; $u < 5; $u++) {
             $user = new User;
-            $hash = $this->userPasswordEncoderInterface->encodePassword($user, "password");
+            $hash = $this->userPasswordEncoderInterface->encodePassword($user, "secret");
             $user->setEmail("user$u@gmail.com")
-                ->setFullName($faker->name)
-                ->setPassword($hash);
+                ->setFullName($faker->firstName($genre))
+                ->setPassword($hash)
+                ->setAvatar($picture);
             $users[] = $user;
             $manager->persist($user);
         }

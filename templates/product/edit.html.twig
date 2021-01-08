@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 
 {% block title %}Edizione del
@@ -15,7 +15,7 @@
 			{{form_start(formView)}}
 			{{form_errors(formView)}}
 			<div class="row">
-				<div class="col">
+				<div class="col-12 col-sm-12 ">
 					{{form_row(formView.nomeStile)}}
 					{{form_row(formView.marca)}}
 					{{form_row(formView.colore)}}
@@ -23,7 +23,7 @@
 					{{form_row(formView.categoria)}}
 
 				</div>
-				<div class="col">
+				<div class="col-12 col-sm-12">
 					{{form_row(formView.modelloCPU)}}
 					{{form_row(formView.dimensioniRAM)}}
 					{{form_row(formView.dimensioniSchermo)}}
@@ -36,7 +36,7 @@
 
 
 			<button type="submit" class="btn btn-primary">
-				<i class="fas fa-save"></i>Creare Il Prodotto</button>
+				<i class="fa fa-check-square-o"></i>Creare Il Prodotto</button>
 			{{form_end(formView)}}
 		</div>
 	</div>
@@ -49,7 +49,8 @@
 	<h2>Poi aggiungere un imaggine</h2>
 	{{form_widget(form)}}
 	<div class="form-group" id="ad-image">
-		<button class="btn btn-primary">Ajouter une image</button>
+		<button class="btn btn-primary">
+			Ajouter une image</button>
 	</div>
 {% endblock %}
 {% block _prodotto_imaggines_entry_widget %}

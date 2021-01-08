@@ -60,7 +60,7 @@ class ProductController extends AbstractController
         ]);
     }
     /**
-     *  @Route("/admin/product/{id}/edit", name="prodotto_edit")
+     *  @Route("/dashboard/product/{id}/edit", name="prodotto_edit")
      */
     public function edit($id, ProdottoRepository $prodottoRepository, Request $request): Response
     {
@@ -88,7 +88,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product/create", name="prodotto_create")
+     * @Route("/dashboard/product/create", name="prodotto_create")
      */
     public function create(Request $request, SluggerInterface $sluggerInterface): Response
     {

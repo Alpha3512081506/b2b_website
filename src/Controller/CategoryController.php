@@ -22,7 +22,7 @@ class CategoryController extends AbstractController
         $this->sluggerInterface = $sluggerInterface;
     }
     /**
-     * @Route("/admin/category/create", name="category_create")
+     * @Route("/dashboard/category/create", name="category_create")
      */
     public function createCategory(Request $request): Response
     {
@@ -41,7 +41,7 @@ class CategoryController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/category/{id}/edit", name="category.edit")
+     * @Route("/admin/category/{id}/edit", name="category_edit")
      */
     public function editCategory($id, CategoriaRepository $categoriaRepository, Request $request): Response
     {

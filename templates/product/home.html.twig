@@ -19,7 +19,7 @@
 	</ol>
 	<div class="row">
 		{% for product in products %}
-			<div class="col-4">
+			<div class="col-12 col-sm-12 col-md-4">
 				<div class="card"><img src="{{product.coverImage}}" alt="imaggine {{product.nomeStile}}" class="img-fluid">
 
 					<div class="card-body">
@@ -44,25 +44,31 @@
 	<hr>
 	<h1 class="my-5 text-center">Servizi impeccabili</h1>
 	<div class="row">
+		<div class="col-12 col-sm-12 col-md-6 col-lg-4">
+			{% include "shared/_assicurazione.html.twig" with {
+			'color' : 'primary',
+			'icone' : ' fa-truck',
+			'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
 
-		{% include "shared/_assicurazione.html.twig" with {
-        'color' : 'primary',
-        'icone' : ' fa-truck',
-        'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
+		} %}
+		</div>
 
-    } %}
-		{% include "shared/_assicurazione.html.twig" with {
-        'color' : 'success',
-        'icone' : ' fa-check',
-        'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
+		<div class="col-12 col-sm-12 col-md-6 col-lg-4">
+			{% include "shared/_assicurazione.html.twig" with {
+			'color' : 'success',
+			'icone' : ' fa-check',
+			'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
 
-    } %}
-		{% include "shared/_assicurazione.html.twig" with {
-        'color' : 'warning',
-        'icone' : ' fa-lock',
-        'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
+		} %}
+		</div>
+		<div class="col-12 col-sm-12 col-md-6 col-lg-4">
+			{% include "shared/_assicurazione.html.twig" with {
+			'color' : 'warning',
+			'icone' : ' fa-lock',
+			'text' : " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem perferendis cum voluptatibus? Placeat provident corporis nisi magnam fugit vero velit at officiis ad libero non, inventore eveniet eligendi reprehenderit odit?"
 
-    } %}
+		} %}
+		</div>
 	</div>
 
 

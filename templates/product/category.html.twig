@@ -7,7 +7,7 @@
 {% block body %}
 	<ol class="breadcrumb my-5">
 		<li class="breadcrumb-item">
-			<a href="{{path('home_index')}}">Home</a>
+			<a href="{{path('home_index')}}">RicomputerB2BShop</a>
 		</li>
 		<li class="breadcrumb-item">
 			{{categoria.nomeCategoria}}
@@ -17,7 +17,7 @@
 	<div class="row">
 
 		{% for product in categoria.prodotti %}
-			<div class="col-3">
+			<div class="col-12 col-sm-12 col-md-4 col-lg-3">
 
 
 				<div class="card"><img src="{{product.coverImage}}" alt="image de la carte" class="img-fluid">
@@ -27,7 +27,7 @@
 						</span>
 						<h3 class="titlt">{{product.nomeStile}}</h3>
 						<p class="card-text">{{product.commento}}</p>
-						<a href="{{path('prodotto_show', {'slug_categoria':product.categoria.slug,'slug_prodotto':product.slug})}}" class="btn btn-primary btn-sm ">Details</a>
+						<a href="{{path('prodotto_show', {'slug_categoria':product.categoria.slug,'slug_prodotto':product.slug})}}" class="btn btn-primary btn-sm ">Detagli</a>
 						<a href="{{path('cart_add',{'id':product.id})}}" class="btn btn-info btn-sm">Agguingi Al Carello</a>
 					</div>
 				</div>

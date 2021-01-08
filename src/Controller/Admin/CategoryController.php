@@ -9,12 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/admin/category/show", name="category_show")
+     * @Route("/dashboard/category/show", name="category_show")
      */
     public function index(): Response
     {
-        return $this->render('admin/category/index.html.twig', [
-            'controller_name' => 'CategoryController',
-        ]);
+        return $this->render('admin/category/category.html.twig', []);
     }
 }

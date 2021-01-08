@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	registration
+{% endblock %}
+{% block body %}
+	<div class="row">
+		<div class="col-3">&nbsp;</div>
+		<div class="col-md-6">
+			<div class="card primary bg-light">
+				<div class="card-header">
+					<h1 class="text-center">Iscrizione al sito</h1>
+				</div>
+				<div class="card-body">
+					{{form_start(formRegister)}}
+					{{form_widget(formRegister)}}
+					<button class="btn btn-success btn-lg" type="submit">Registrarsi</button>
+					{{form_end(formRegister)}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

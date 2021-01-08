@@ -2,10 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\LoginType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\RegistrationType;
+
+use  Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -19,7 +26,8 @@ class SecurityController extends AbstractController
         //dd($authenticationUtils->getLastAuthenticationError(), $authenticationUtils->getLastUsername());
         return $this->render('security/login.html.twig', [
             'formView' => $form->createView(),
-            'errors' => $authenticationUtils->getLastAuthenticationError(),
+            'hasErrors' => $authenticationUtils->getLastAuthenticationError() !== null,
+            'email' => $authenticationUtils->getLastUsername()
         ]);
     }
     /**

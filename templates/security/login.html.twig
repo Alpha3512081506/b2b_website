@@ -1,16 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SecurityController!
+{% block title %}login!
 {% endblock %}
 
 {% block body %}
-	<h1>connexion</h1>
-	{% if errors %}
-		<div class="alert alert-danger">{{errors.message}}</div>
-	{% endif %}
-	{{form_start(formView)}}
-	{{form_widget(formView)}}
-	<button class="btn btn-success" type="submit">Accedere</button>
-	{{form_end(formView)}}
+
+	<div class="row">
+		<div class="col-md-3">&nbsp;</div>
+		<div class="col-md-6">
+			<div class="card bg-light">
+				<div class="card-header">
+					<h1 class="text-center">connettersi al sito</h1>
+				</div>
+				<div class="card-body">
+
+					{% if hasErrors %}
+						<div class="alert alert-danger">
+							<strong>si è verificato un errore il nome utente o la password non è corretta</strong>
+						</div>
+					{% endif %}
+					{{form_start(formView, {'action': path('security_login'), 'method': 'POST'})}}
+					{{form_widget(formView)}}
+					<button class="btn btn-success btn-lg" type="submit">
+						<i class="fa fa-unlock-alt"></i>Accedere</button>
+					{{form_end(formView)}}
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
 
 {% endblock %}

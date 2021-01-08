@@ -9,7 +9,7 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+        in_database:
             entity:
                 class: App\Entity\User
                 property: email
@@ -19,21 +19,21 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        admin:
-            pattern: ^/admin
-            anonymous: true
+        # admin:
+        #     pattern: ^/admin
+        #     anonymous: true
 
-            provider: app_user_provider
+        #     provider: app_user_provider
 
-            form_login:
-                login_path: admin_dashboard
-                check_path: admin_dashboard
-            logout:
-                path: security_logout        
+        #     form_login:
+        #         login_path: admin_dashboard
+        #         check_path: admin_dashboard
+        #     logout:
+        #         path: security_logout        
         main:
             anonymous: true
-            lazy: true
-            provider: app_user_provider
+           
+            provider: in_database
             
             form_login:
                 login_path: security_login
@@ -52,5 +52,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
+         #- { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
