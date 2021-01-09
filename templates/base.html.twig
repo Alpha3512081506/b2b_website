@@ -9,6 +9,11 @@
 		</title>
 		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
 		{% block stylesheets %}
+			<style>
+				body {
+					background-image: url('images/background.png');
+				}
+			</style>
 
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -16,6 +21,7 @@
 	<body>
 		{% include "shared/_navbar.html.twig" %}
 		<main role="main">
+			{% include "shared/_carousel.html.twig" %}
 			<div class="container mt-5">
 				{{ include('product/partials/_flash_messages.html.twig') }}
 				<div class="container"> {% block body %}{% endblock %}

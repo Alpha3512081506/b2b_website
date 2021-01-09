@@ -8,25 +8,32 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
-		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
-	</head>
-	<body>
-		{% include "admin/partials/_navbar.html.twig" %}
-		<main role="main">
-			<div class="container mt-5">
-				{{ include('product/partials/_flash_messages.html.twig') }}
-				<div class="container"> {% block body %}{% endblock %}
-					</div>
-				</div>
-			</main>
-
-			{% block javascripts %}
-				{{ encore_entry_script_tags('app') }}
+			<style>
+				<style>
+					body {
+						background-image: url('images/background.png');
+					}
+				</style>
+				{{ encore_entry_link_tags('app') }}
 			{% endblock %}
-			<footer>
-				{% include "admin/partials/_footer.html.twig" %}
-			</footer>
-		</body>
+			<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+		</head>
+		<body>
+			{% include "admin/partials/_navbar.html.twig" %}
+			<main role="main">
+				<div class="container mt-5">
+					{{ include('product/partials/_flash_messages.html.twig') }}
+					<div class="container"> {% block body %}{% endblock %}
+						</div>
+					</div>
+				</main>
+
+				{% block javascripts %}
+					{{ encore_entry_script_tags('app') }}
+				{% endblock %}
+				<footer>
+					{% include "admin/partials/_footer.html.twig" %}
+				</footer>
+			</body>
+		</head>
 	</html>

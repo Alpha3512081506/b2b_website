@@ -14,6 +14,7 @@ import $ from 'jquery';
 global.$ = $;
 import 'popper.js';
 import 'bootstrap';
+/*import './styles/app.css';*/
 
 
 
