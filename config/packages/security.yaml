@@ -19,17 +19,17 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        # admin:
-        #     pattern: ^/admin
-        #     anonymous: true
+        admin:
+            pattern: ^/admin
+            anonymous: true
 
-        #     provider: app_user_provider
+            provider: in_database
 
-        #     form_login:
-        #         login_path: admin_dashboard
-        #         check_path: admin_dashboard
-        #     logout:
-        #         path: security_logout        
+            form_login:
+                login_path: admin_dashboard
+                check_path: admin_dashboard
+            logout:
+                path: security_logout        
         main:
             anonymous: true
            

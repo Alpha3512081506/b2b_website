@@ -22,7 +22,7 @@ class CategoryController extends AbstractController
         $this->sluggerInterface = $sluggerInterface;
     }
     /**
-     * @Route("/dashboard/category/create", name="category_create")
+     * @Route("/admin/category/create", name="category_create")
      */
     public function createCategory(Request $request): Response
     {

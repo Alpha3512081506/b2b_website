@@ -1,7 +1,21 @@
 {% extends "base.html.twig" %}
 {% block title %}
-	403
+	Forbidden
 {% endblock %}
 {% block body %}
-	<h1>error 403</h1>
+
+
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12">
+			<div class="jumbotron border-danger">
+				<h1 class="display-3 text-center">Accesso vietato</h1>
+				<p class="lead alert alert-danger">non hai il diritto di accedere a questa risorsa,
+																					torna alla home page e continua la navigazione e goditi i nostri prodotti</p>
+				<hr class="my-4">
+				<p class="lead">
+					<a class="btn btn-primary btn-lg btn-lg btn-block" href="{{path('home_index')}}" role="button">Torna Alla Pagina D'Acoglienza</a>
+				</p>
+			</div>
+		</div>
+	</div>
 {% endblock %}

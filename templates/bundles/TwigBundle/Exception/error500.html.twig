@@ -1,7 +1,20 @@
 {% extends "base.html.twig" %}
 {% block title %}
-	500
+	Internal Server Error
 {% endblock %}
+
 {% block body %}
-	<h1>errer 500</h1>
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12">
+			<div class="jumbotron border-primary">
+				<h1 class="display-3 text-center">Errore interno del server</h1>
+				<p class="lead">
+					il server has riscontrato una condizione imprevista, che gli ha impedito di andare avanti, Nessun problema, torna alla home page e continua a goderti i nostri prodotti ..</p>
+				<hr class="my-4">
+				<p class="lead">
+					<a class="btn btn-primary btn-lg btn-lg btn-block" href="{{path('home_index')}}" role="button">Torna Alla Pagina D'Acoglienza</a>
+				</p>
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -38,13 +38,13 @@ class RegistrationType extends AbstractType
                 'second_options' => ['label' => 'Ripeti la password'],
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'FullName',
+                'label' => 'Nome',
                 'attr' => [
                     'placeholder' => 'scrivere il nome ......'
                 ]
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'FullName',
+                'label' => 'Cognome',
                 'attr' => [
                     'placeholder' => 'scrivere  il cognome ......'
                 ]
