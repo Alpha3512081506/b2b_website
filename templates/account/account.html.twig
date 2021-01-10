@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	my account
+{% endblock %}
+{% block body %}
+	<h1 class="display-3 text-center">Mio Profilo</h1>
+	<div class="row">
+
+		{% if user is same as(app.user) %}
+			<div class="col-12 col-sm-12 col-md-6 shadow-lg p-4 mb-4 bg-white">
+
+				<div class="media border p-3">
+					<img src="{{app.user.avatar}}" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+					<div class="media-body">
+						<h4 class="font-weight-bolder ">
+							{{app.user.firstName}}-{{app.user.lastName}}
+						</h4>
+						<h5>Email:</h5>
+						<p>{{app.user.email}}</p>
+						<p class="font-italic">
+							<h5>Scritto da:</h5>
+							{{ "now"|date("m/d/Y") }}</p>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-12 col-sm-12 col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="display-6 text-center">Manager your Account</h4>
+					</div>
+					<div class="card-body">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<a href="{{path('account_edit')}}" class="btn btn-secondary">Editar il mio profilo</a>
+							</li>
+							<li class="list-group-item">
+								<a href="{{path('account_update_password')}}" class="btn btn-secondary">changer Votre password</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		{% endif %}
+		<div class="col-md-3 my-4">&nbsp;</div>
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header bg-info">Purchage</div>
+				<div class="card-body">Purchage</div>
+				<div class="card-footer">Footer</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

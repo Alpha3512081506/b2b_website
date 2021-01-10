@@ -5,12 +5,15 @@
 
 {% block body %}
 	<div class="row">
-		<div class="col-3">&nbsp;</div>
-		<div class="col-md-6">
+		<div class="col-2">&nbsp;</div>
+		<div class="col-md-8">
+			<h1 class="text-center display-4">
+				<i class="fa fa-user-o"></i>Modifica il tuo account</h1>
+			<p class="text-center">Puoi modificare le informazioni relative al tuo account utilizzando il modulo sottostante.</p>
+
 			<div class="card primary bg-light">
-				<div class="card-header">
-					<h1 class="text-center">Editar il suo Profilo</h1>
-				</div>
+
+
 				<div class="card-body">
 					{{form_start(formAccountEdit)}}
 					{{form_widget(formAccountEdit)}}

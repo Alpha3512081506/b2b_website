@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -37,7 +38,8 @@ class AccountController extends AbstractController
         return $this->render('account/registration.html.twig', compact('formRegister'));
     }
     /**
-     * @Route("/account/profile", name="account_profile",priority=1)
+     * @Route("/account/edit", name="account_edit",priority=1)
+     * @IsGranted("ROLE_USER")
      */
     public function profile(Request $request, EntityManagerInterface $em): Response
     {
@@ -47,6 +49,7 @@ class AccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash("success", "Hai modificato con successo il tuo profilo");
+            return $this->redirectToRoute("account_profile");
         }
         return $this->render('account/editProfile.html.twig', [
             'formAccountEdit' => $form->createView()
@@ -55,6 +58,7 @@ class AccountController extends AbstractController
 
     /**
      * @Route("/account/update-password", name="account_update_password",priority=1)
+     * @IsGranted("ROLE_USER")
      */
     public function updatePassword(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $userPasswordEncoderInterface): Response
     {
@@ -72,11 +76,24 @@ class AccountController extends AbstractController
                 $user->setPassword($hash);
                 $em->flush();
                 $this->addFlash("success", "Hai modificato con successo la password");
-                return $this->redirectToRoute("home_index");
+                return $this->redirectToRoute("account_profile");
             }
         }
         return $this->render('account/password.html.twig', [
             'formAccountPasswordUpdate' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/account", name="account_profile",priority=1)
+     * @IsGranted("ROLE_USER")
+     */
+    public function account(): Response
+    {
+        $user = $this->getUser();
+
+        return $this->render('account/account.html.twig', [
+            'user' => $user
         ]);
     }
 }

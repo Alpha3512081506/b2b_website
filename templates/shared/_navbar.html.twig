@@ -32,22 +32,26 @@
 			<li class="nav-item">
 				<a href="{{path('cart_show')}}" class="nav-link">
 					<i class="fa fa-shopping-cart"></i>carrello
-																																																																																																																							({{cartService.total}})
+																																																																																																																																																																	({{cartService.total}})
 				</a>
 			</li>
 			{% if app.user %}
 				<li class="nav-item">
-					<a href="{{path("purchase_index")}}" class="nav-link">Miei Ordini</a>
+					<a href="{{path("purchase_index")}}" class="nav-link btn btn-secondary">Miei Ordini</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{path('account_profile')}}" class="btn btn-secondary">Mio Profilo</a>
 				</li>
 				<li class="nav-item">
 					<a href="{{path('security_logout')}}" class="btn btn-danger">Logout</a>
 				</li>
+
 			{% else %}
 				<li class="nav-item">
-					<a href="{{path('account_register')}}" class="nav-link">Register</a>
+					<a href="{{path('account_register')}}" class="nav-link btn btn-secondary">Register</a>
 				</li>
 				<li class="nav-item">
-					<a href="{{path('security_login')}}" class="btn btn-success">Login</a>
+					<a href="{{path('security_login')}}" class="btn btn-secondary">Login</a>
 				</li>
 
 

@@ -2,19 +2,20 @@
 
 namespace App\Controller;
 
-use App\Entity\Categoria;
 use App\Entity\Imaggine;
 use App\Entity\Prodotto;
+use App\Entity\Categoria;
 use App\Form\ProdottoType;
-use App\Repository\CategoriaRepository;
 use App\Repository\ProdottoRepository;
+use App\Repository\CategoriaRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
@@ -25,6 +26,7 @@ class ProductController extends AbstractController
     }
     /**
      * @Route("/{slug}", name="prodotto_categorie" , priority=-1)
+     * @IsGranted("ROLE_USER")
      */
     public function categorie($slug, CategoriaRepository $categoriaRepository): Response
     {
@@ -44,6 +46,7 @@ class ProductController extends AbstractController
     }
     /**
      * @Route("/{slug_categoria}/{slug_prodotto}", name="prodotto_show", priority=-1)
+     * @IsGranted("ROLE_USER")
      */
     public function show($slug_prodotto, ProdottoRepository $prodottoRepository): Response
     {
@@ -60,7 +63,7 @@ class ProductController extends AbstractController
         ]);
     }
     /**
-     *  @Route("/dashboard/product/{id}/edit", name="prodotto_edit")
+     *  @Route("/admin/product/{id}/edit", name="prodotto_edit")
      */
     public function edit($id, ProdottoRepository $prodottoRepository, Request $request): Response
     {
@@ -88,15 +91,15 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/product/create", name="prodotto_create")
+     * @Route("/admin/product/create", name="prodotto_create")
      */
     public function create(Request $request, SluggerInterface $sluggerInterface): Response
     {
-        $image = new Imaggine;
-        $image->setCaption("caption")->setLinkImaggine("uri");
+        /*  $image = new Imaggine;
+        $image->setCaption("caption")->setLinkImaggine("uri"); */
 
         $prodotto = new Prodotto;
-        $prodotto->addImaggine($image);
+        // $prodotto->addImaggine($image);
         // $builder = $formFactoryInterface->createBuilder(ProdottoType::class);
         $form = $this->createForm(ProdottoType::class, $prodotto);
         //$form = $builder->getForm();
