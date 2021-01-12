@@ -16,6 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+use function Amp\Iterator\toArray;
+
 class AccountController extends AbstractController
 {
     /**
@@ -90,10 +92,14 @@ class AccountController extends AbstractController
      */
     public function account(): Response
     {
+
         $user = $this->getUser();
 
         return $this->render('account/account.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'purchases' => $user->getPurchases()
+
+
         ]);
     }
 }

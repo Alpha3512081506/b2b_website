@@ -57,20 +57,18 @@ class CartController extends AbstractController
         if (!$product) {
             throw $this->createNotFoundException("il prodotto $id non esiste e non può essere eliminato");
         }
-        $cartService->remove($id);
+        $cartService->delete($id);
         $this->addFlash("success", "il prodotto è stato eliminato del carrello");
         return $this->redirectToRoute("cart_show");
     }
+
+
     /**
-     * @Route("/cart/decrement/{id}", name="cart_decrement", requirements={"id":"\d+"})
+     * @Route("/cart/remove", name="cart_remove")
      */
-    public function decrement(int $id, CartService $cartService, ProdottoRepository $prodottoRepository)
+    public function remove(CartService $cartService)
     {
-        $product = $prodottoRepository->find($id);
-        if (!$product) {
-            throw $this->createNotFoundException("il prodotto $id non esiste e non può essere decrementato");
-        }
-        $cartService->decrement($id);
+        $cartService->remove();
         return $this->redirectToRoute("cart_show");
     }
 }

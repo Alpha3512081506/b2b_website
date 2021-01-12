@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PurchasesListController extends AbstractController
 {
@@ -18,10 +19,6 @@ class PurchasesListController extends AbstractController
     {
         /** @var User */
         $user = $this->getUser();
-        if (!$user) {
-            return $this->redirectToRoute("home_index");
-        }
-
         return $this->render('purchase/index.html.twig', [
             'purchases' => $user->getPurchases()
         ]);

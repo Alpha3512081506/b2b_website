@@ -43,13 +43,55 @@
 				</div>
 			</div>
 		{% endif %}
-		<div class="col-md-3 my-4">&nbsp;</div>
-		<div class="col-md-8">
+
+		{# <div class="col-md-3 my-4">&nbsp;</div> #}
+		<div class="col-12">
 			<div class="card">
-				<div class="card-header bg-info">Purchage</div>
-				<div class="card-body">Purchage</div>
-				<div class="card-footer">Footer</div>
+				<div class="card-header bg-info">
+					<i class="fa fa-file-text-o"></i>Vostri ordini</div>
+				<div
+					class="card-body">
+					{# <table class="table table-bordered border-secondary">
+											<thead>
+												<tr>
+													<th>Ordine #</th>
+													<th>Articoli</th>
+													<th>Price</th>
+													<th>Totale</th>
+													<th>Data</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for p in purchases %}
+													{% for itemproduit in p.purchaseItems %}
+														<tr>
+															<td>{{itemproduit.id}}</td>
+															<td>{{itemproduit.quantity}}
+																X
+																{{itemproduit.productName}}</td>
+															<td>{{itemproduit.productPrice}}
+																&euro;</td>
+															<td>{{itemproduit.total}}&euro;</td>
+															<td>{{itemproduit.purchase.purchaseAt|date("d/m/yy")}}</td>
+														</tr>
+													{% endfor %}
+												{% endfor %}
+					
+											</tbody>
+										</table> #}
+
+					<ul class="list-group">
+						<li class="list-group-item">
+							<a href="{{path('purchase_index')}}" class="btn btn-secondary">
+								<i class="fa fa-file-text-o"></i>Vedere Tuttti miei ordini</a>
+						</li>
+						<li class="list-group-item">
+							<a href="" class="btn btn-secondary">Altre Azione</a>
+						</li>
+					</ul>
+
+				</div>
+				<div class="card-footer"></div>
 			</div>
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}

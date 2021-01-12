@@ -29,7 +29,7 @@
 								</a>
 
 								{{item.quantity}}
-								<a href="{{path("cart_decrement",{"id":item.product.id})}}" class="btn btn-primary btn-sm">
+								<a href="{{path("cart_delete",{"id":item.product.id})}}" class="btn btn-primary btn-sm">
 									<i class="fa fa-minus"></i>
 								</a>
 							</td>
@@ -53,11 +53,13 @@
 
 		</table>
 		<hr>
-		<h1>conferma il suo ordine compilando questo modulo</h1>
-		{{form_start(confirmationform)}}
-		{{form_widget(confirmationform)}}
-		<button class="btn btn-success">confermo</button>
-		{{form_end(confirmationform)}}
+		{% if app.user %}
+			<h1>conferma il suo ordine compilando questo modulo</h1>
+			{{form_start(confirmationform,{'action':path('purchase_confirm')})}}
+			{{form_widget(confirmationform)}}
+			<button class="btn btn-success" type="submit">confermo</button>
+			{{form_end(confirmationform)}}
+		{% endif %}
 
 	{% else %}
 		<div class="jumbotron">

@@ -43,7 +43,7 @@ class Purchase
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      */
     private $total;
 
