@@ -30,7 +30,7 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoriaType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $category->setSlug(strtolower($this->sluggerInterface->slug($category->getNomeCategoria())));
+            // $category->setSlug(strtolower($this->sluggerInterface->slug($category->getNomeCategoria())));
             $this->entityManagerInterface->persist($category);
             $this->entityManagerInterface->flush();
             $this->addFlash('success', "la categoria è stata   creata");

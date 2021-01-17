@@ -49,6 +49,54 @@ class RegistrationType extends AbstractType
                     'placeholder' => 'scrivere  il cognome ......'
                 ]
             ])
+            ->add('ragioneSociale', TextType::class, [
+                'label' => 'Ragione Sociale',
+                'attr' => [
+                    'placeholder' => 'scrivere  la ragione sociale ......'
+                ]
+            ])
+            ->add('partitaIva', TextType::class, [
+                'label' => 'Partita Iva',
+                'attr' => [
+                    'placeholder' => 'scrivere  la partita Iva ......'
+                ]
+            ])
+            ->add('via', TextType::class, [
+                'label' => 'VIA',
+                'attr' => [
+                    'placeholder' => 'scrivere  la Via  ......'
+                ]
+            ])
+            ->add('citta', TextType::class, [
+                'label' => 'Città',
+                'attr' => [
+                    'placeholder' => 'scrivere  la città  ......'
+                ]
+            ])
+            ->add('cap', TextType::class, [
+                'label' => 'CAP',
+                'attr' => [
+                    'placeholder' => 'scrivere  la cap  ......'
+                ]
+            ])
+            ->add('referente', TextType::class, [
+                'label' => 'Referente',
+                'attr' => [
+                    'placeholder' => 'scrivere  la referente  ......'
+                ]
+            ])
+            ->add('telefono', TextType::class, [
+                'label' => 'Telefono',
+                'attr' => [
+                    'placeholder' => 'scrivere  il numero di telefono  ......'
+                ]
+            ])
+            ->add('codiceUnivoco', TextType::class, [
+                'label' => 'Codice Univoco',
+                'attr' => [
+                    'placeholder' => 'scrivere  il codice univoco  ......'
+                ]
+            ])
             ->add('avatar', UrlType::class, [
                 'label' => 'Foto profilo',
                 'attr' => [

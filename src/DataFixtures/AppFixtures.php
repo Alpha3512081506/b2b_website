@@ -43,7 +43,16 @@ class AppFixtures extends Fixture
         $admin = new User;
         $hash = $this->userPasswordEncoderInterface->encodePassword($admin, "Admin123");
         $admin->setEmail("admin@gmail.com")
-            ->setFullName("Admin")
+            ->setFirstName($faker->firstName())
+            ->setLastName($faker->lastName)
+            ->setPartitaIva($faker->creditCardNumber)
+            ->setRagioneSociale($faker->jobTitle)
+            ->setReferente($faker->titleMale)
+            ->setTelefono($faker->phoneNumber)
+            ->setVia($faker->streetAddress)
+            ->setCap($faker->postcode)
+            ->setCitta($faker->city)
+            ->setCodiceUnivoco($faker->md5)
             ->setPassword($hash)
             ->setRoles(["ROLE_ADMIN"])
             ->setAvatar('https://randomuser.me/api/portraits/men/80.jpg');
@@ -53,7 +62,17 @@ class AppFixtures extends Fixture
             $user = new User;
             $hash = $this->userPasswordEncoderInterface->encodePassword($user, "secret");
             $user->setEmail("user$u@gmail.com")
-                ->setFullName($faker->firstName($genre))
+                ->setFirstName($faker->firstName())
+                ->setLastName($faker->lastName)
+                ->setPartitaIva($faker->creditCardNumber)
+                ->setRagioneSociale($faker->jobTitle)
+                ->setReferente($faker->titleMale)
+                ->setTelefono($faker->phoneNumber)
+                ->setVia($faker->streetAddress)
+                ->setCap($faker->postcode)
+                ->setCitta($faker->city)
+                ->setCodiceUnivoco($faker->md5)
+
                 ->setPassword($hash)
                 ->setAvatar($picture);
             $users[] = $user;
@@ -61,7 +80,8 @@ class AppFixtures extends Fixture
         }
         for ($c = 0; $c < 5; $c++) {
             $categoria = new Categoria;
-            $categoria->setNomeCategoria($faker->department)->setSlug(strtolower($this->sluggerInterface->slug($categoria->getNomeCategoria())));
+            $categoria->setNomeCategoria($faker->department);
+            //->setSlug(strtolower($this->sluggerInterface->slug($categoria->getNomeCategoria())));
             $manager->persist($categoria);
             $products = [];
             for ($i = 0; $i < mt_rand(15, 20); $i++) {
@@ -76,7 +96,7 @@ class AppFixtures extends Fixture
                     ->setModelloCPU($faker->promotionCode)
                     ->setNomeStile($faker->productName)
                     ->setPrezzo($faker->price(4000, 20000))
-                    ->setSlug(strtolower($this->sluggerInterface->slug($product->getNomeStile())))
+                    // ->setSlug(strtolower($this->sluggerInterface->slug($product->getNomeStile())))
                     ->setCategoria($categoria);
                 $products[] = $product;
 
@@ -93,10 +113,14 @@ class AppFixtures extends Fixture
                 $purchase = new Purchase;
                 $purchase->setAddress($faker->streetAddress)
                     ->setFullName($faker->name)
+                    ->setRagioneSociale($faker->domainWord)
+                    ->setVia($faker->streetAddress)
                     ->setCity($faker->city)
                     ->setPostalCode($faker->postcode)
+                    ->setTelefono($faker->phoneNumber)
+                    ->setEmail($faker->email)
                     ->setUser($faker->randomElement($users))
-                    ->setTotal(mt_rand(2000, 30000))
+                    // ->setTotal(mt_rand(2000, 30000))
                     ->setPurchaseAt($faker->dateTimeBetween('-6 months'));
                 if ($faker->boolean(90)) {
                     $purchase->setStatus(Purchase::STATUS_PAID);

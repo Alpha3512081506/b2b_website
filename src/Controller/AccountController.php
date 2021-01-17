@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
+use App\Event\UserRegisterSuccessfulEvent;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
 use Symfony\Component\Form\FormError;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 use function Amp\Iterator\toArray;
@@ -23,8 +25,12 @@ class AccountController extends AbstractController
     /**
      * @Route("/register", name="account_register")
      */
-    public function register(Request $request, EntityManagerInterface $entityManagerInterface, UserPasswordEncoderInterface $userPasswordEncoder): Response
-    {
+    public function register(
+        Request $request,
+        EntityManagerInterface $entityManagerInterface,
+        UserPasswordEncoderInterface $userPasswordEncoder,
+        EventDispatcherInterface $eventDispatcherInterface
+    ): Response {
         $user = new User;
         $formRegister =  $this->createForm(RegistrationType::class, $user);
         $formRegister->handleRequest($request);
@@ -34,6 +40,9 @@ class AccountController extends AbstractController
             $entityManagerInterface->persist($user);
 
             $entityManagerInterface->flush();
+            $userEvent = new UserRegisterSuccessfulEvent($user);
+            $eventDispatcherInterface->dispatch($userEvent, 'userRegister.success');
+
             $this->addFlash('success', 'ti sei registrato con successo riceverai una mail di conferma dall\'amministratore');
         }
         $formRegister = $formRegister->createView();

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	PurchagePayment
+{% endblock %}
+
+{% block style %}
+	<style>
+		button {
+			background: #5469d4;
+			color: #ffffff;
+			font-family: Arial, sans-serif;
+			border-radius: 0 0 4px 4px;
+			border: 0;
+			padding: 12px 16px;
+			font-size: 16px;
+			font-weight: 600;
+			cursor: pointer;
+			display: block;
+			transition: all 0.2s ease;
+			box-shadow: 0 4px 5.5px 0 rgba(0, 0, 0, 0.07);
+			width: 100%;
+		}
+		button:hover {
+			filter: contrast(115%);
+		}
+		button:disabled {
+			opacity: 0.5;
+			cursor: default;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<h1>Pagamento</h1>
+	<div class="card bg-light shadow-lg p-3 mb-5 bg-white rounded ">
+		<div class="card-body">
+			<form id="payment-form">
+				<div id="card-element"><!--Stripe.js injects the Card Element--></div>
+				<button id="submit" class="btn btn-success">
+					<div class="spinner hidden" id="spinner"></div>
+					<span id="button-text">Confirma il pagamento</span>
+				</button>
+				<p id="card-error" role="alert"></p>
+				<p>
+					<i class="fa fa-cc-paypal fa-2x" style="color:#d5e1df"></i>
+					<i class="fa fa-cc-mastercard fa-2x" style="color:#d5e1df"></i>
+					<i class="fa fa-money fa-2x" style="color:#d5e1df"></i>
+					<i class="fa fa-cc-visa fa-2x" style="color:#d5e1df"></i>
+				</p>
+
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://js.stripe.com/v3/"></script>
+	<script>
+		const clientSecret ='{{ clientSecret }}';
+const stripePublickey = '{{ stripePublickey }}';
+const redirectAfterSuccessUrl ="{{ url('purchase_payment_success',{'id': purchase.id}) }}"
+	</script>
+	<script src="/js/payment.js"></script>
+{% endblock %}

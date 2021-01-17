@@ -4,15 +4,34 @@
 {% endblock %}
 {% block body %}
 	<div class="row">
-		<div class="col-3">&nbsp;</div>
-		<div class="col-md-6">
+
+		<div class="col-12 col.sm-12 col-md-12">
 			<div class="card primary bg-light">
 				<div class="card-header">
 					<h1 class="text-center">Iscrizione al sito</h1>
 				</div>
 				<div class="card-body">
 					{{form_start(formRegister)}}
-					{{form_widget(formRegister)}}
+					<div class="row">
+						<div class="col-6 col.sm-6 col-md-6">
+							{{form_row(formRegister.firstName)}}
+							{{form_row(formRegister.lastName)}}
+							{{form_row(formRegister.email)}}
+							{{form_row(formRegister.password)}}
+							{{form_row(formRegister.telefono)}}
+							{{form_row(formRegister.avatar)}}
+						</div>
+						<div class="col-6 col.sm-6 col-md-6">
+							{{form_row(formRegister.ragioneSociale)}}
+							{{form_row(formRegister.partitaIva)}}
+							{{form_row(formRegister.via)}}
+							{{form_row(formRegister.citta)}}
+							{{form_row(formRegister.cap)}}
+							{{form_row(formRegister.referente)}}
+							{{form_row(formRegister.codiceUnivoco)}}
+
+						</div>
+					</div>
 					<button class="btn btn-success btn-lg" type="submit">Registrarsi</button>
 					{{form_end(formRegister)}}
 				</div>

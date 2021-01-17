@@ -67,6 +67,46 @@ class User implements UserInterface
      */
     private $lastName;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ragioneSociale;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $partitaIva;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $via;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $citta;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $cap;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $referente;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $telefono;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $codiceUnivoco;
+
     public function __construct()
     {
         $this->purchases = new ArrayCollection();
@@ -224,6 +264,102 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getRagioneSociale(): ?string
+    {
+        return $this->ragioneSociale;
+    }
+
+    public function setRagioneSociale(string $ragioneSociale): self
+    {
+        $this->ragioneSociale = $ragioneSociale;
+
+        return $this;
+    }
+
+    public function getPartitaIva(): ?string
+    {
+        return $this->partitaIva;
+    }
+
+    public function setPartitaIva(string $partitaIva): self
+    {
+        $this->partitaIva = $partitaIva;
+
+        return $this;
+    }
+
+    public function getVia(): ?string
+    {
+        return $this->via;
+    }
+
+    public function setVia(string $via): self
+    {
+        $this->via = $via;
+
+        return $this;
+    }
+
+    public function getCitta(): ?string
+    {
+        return $this->citta;
+    }
+
+    public function setCitta(string $citta): self
+    {
+        $this->citta = $citta;
+
+        return $this;
+    }
+
+    public function getCap(): ?string
+    {
+        return $this->cap;
+    }
+
+    public function setCap(string $cap): self
+    {
+        $this->cap = $cap;
+
+        return $this;
+    }
+
+    public function getReferente(): ?string
+    {
+        return $this->referente;
+    }
+
+    public function setReferente(string $referente): self
+    {
+        $this->referente = $referente;
+
+        return $this;
+    }
+
+    public function getTelefono(): ?string
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(string $telefono): self
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getCodiceUnivoco(): ?string
+    {
+        return $this->codiceUnivoco;
+    }
+
+    public function setCodiceUnivoco(string $codiceUnivoco): self
+    {
+        $this->codiceUnivoco = $codiceUnivoco;
 
         return $this;
     }

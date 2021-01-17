@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CartConfirmationType extends AbstractType
@@ -15,13 +16,19 @@ class CartConfirmationType extends AbstractType
     {
         $builder
             ->add('fullName', TextType::class, [
-                'label' => 'Nome Cliente',
+                'label' => 'Nome e Cognome del Cliente',
                 'attr' => [
                     'placeholder' => 'nome completo per la consegna...'
                 ]
             ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email Cliente',
+                'attr' => [
+                    'placeholder' => 'email.......'
+                ]
+            ])
             ->add('address', TextareaType::class, [
-                'label' => 'Indirizzo del cliente',
+                'label' => 'Indirizzo di consegna',
                 'attr' => [
                     'placeholder' => 'Indirizzo  di consegna'
                 ]
@@ -36,6 +43,24 @@ class CartConfirmationType extends AbstractType
                 'label' => 'codice postale',
                 'attr' => [
                     'placeholder' => 'codice postale....'
+                ]
+            ])
+            ->add('RagioneSociale', TextType::class, [
+                'label' => 'RAGIONE SOCIALE',
+                'attr' => [
+                    'placeholder' => 'inserisce la ragione sociale....'
+                ]
+            ])
+            ->add('via', TextType::class, [
+                'label' => 'VIA',
+                'attr' => [
+                    'placeholder' => 'inserisce la ragione sociale....'
+                ]
+            ])
+            ->add('telefono', TextType::class, [
+                'label' => '    TELEFONO',
+                'attr' => [
+                    'placeholder' => 'inserisce il numero di telefono....'
                 ]
             ])
             ->add('city', TextType::class, [

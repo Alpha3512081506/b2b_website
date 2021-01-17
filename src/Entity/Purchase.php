@@ -2,19 +2,25 @@
 
 namespace App\Entity;
 
-use App\Repository\PurchaseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use App\Entity\PurchaseItem;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PreFlush;
+use Doctrine\ORM\Mapping\PrePersist;
+use App\Repository\PurchaseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=PurchaseRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Purchase
 {
     public const STATUS_PENDING = "PENDING";
     public const STATUS_PAID = "PAID";
-    public const STATUS_CANCEL = "CANCEL";
+    // public const STATUS_CANCEL = "CANCEL";
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -59,17 +65,59 @@ class Purchase
 
     /**
      * @ORM\Column(type="datetime")
+     * 
      */
     private $purchaseAt;
 
     /**
      * @ORM\OneToMany(targetEntity=PurchaseItem::class, mappedBy="purchase", orphanRemoval=true)
+     * @var Collection<PurchaseItem>
      */
     private $purchaseItems;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $RagioneSociale;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $via;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $telefono;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
     public function __construct()
     {
         $this->purchaseItems = new ArrayCollection();
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function presPersist()
+    {
+        if (empty($this->purchaseAt)) {
+            $this->purchaseAt = new DateTime();
+        }
+    }
+    /**
+     * @ORM\PreFlush
+     */
+    public function presFlush()
+    {
+
+        $total = 1;
+        foreach ($this->purchaseItems as $items) {
+            $total += $items->getTotal();
+        }
+        $this->total = $total;
     }
 
     public function getId(): ?int
@@ -199,6 +247,54 @@ class Purchase
                 $purchaseItem->setPurchase(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRagioneSociale(): ?string
+    {
+        return $this->RagioneSociale;
+    }
+
+    public function setRagioneSociale(string $RagioneSociale): self
+    {
+        $this->RagioneSociale = $RagioneSociale;
+
+        return $this;
+    }
+
+    public function getVia(): ?string
+    {
+        return $this->via;
+    }
+
+    public function setVia(string $via): self
+    {
+        $this->via = $via;
+
+        return $this;
+    }
+
+    public function getTelefono(): ?string
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(string $telefono): self
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

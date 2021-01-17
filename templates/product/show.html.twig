@@ -30,6 +30,8 @@
 
 
 		</div>
+
+		<br>
 		<div class="col-12 col-sm-12 col-md-4">
 			<span class="badge badge-primary">{{product.categoria.nomeCategoria}}</span>
 			<p>
@@ -38,7 +40,39 @@
 				<i class="fa fa-shopping-cart"></i>Agguingi Al Carello
 			</a>
 		</div>
+	</div>
+	<hr>
+	<div class="row ">
 
+		<div class="col-12 col-sm-12 col-md-12 my-5">
+			<h3>Deglio del prodotto</h3>
+			<p>Prodotto:{{product.nomeStile}}</p>
+			<table class="table table-bordered ">
+
+				<tbody>
+					<tr>
+						<th class="bg-secondary">Marca</th>
+						<td>{{product.marca}}</td>
+					</tr>
+					<tr>
+						<th class="bg-secondary">ModelloCPU</th>
+						<td>{{product.modelloCPU}}</td>
+					</tr>
+					<tr>
+						<th class="bg-secondary">dimensioniRAM</th>
+						<td>{{product.dimensioniRAM}}</td>
+					</tr>
+					<tr>
+						<th class="bg-secondary">colore</th>
+						<td>{{product.colore}}</td>
+					</tr>
+					<tr>
+						<th class="bg-secondary">DimensioniSchermo</th>
+						<td>{{product.dimensioniSchermo}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 
 
