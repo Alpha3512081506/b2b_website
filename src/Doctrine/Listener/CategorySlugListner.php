@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Doctrine\Listner;
+namespace App\Doctrine\Listener;
 
 use App\Entity\Categoria;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
