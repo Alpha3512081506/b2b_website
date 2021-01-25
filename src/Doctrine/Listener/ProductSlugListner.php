@@ -17,10 +17,6 @@ class ProductSlugListner
     public function prePersist(Prodotto $entity, LifecycleEventArgs $lifecycleEventArgs): void
     {
 
-        /*  $entity = $lifecycleEventArgs->getObject();
-        if (!$entity instanceof Prodotto) {
-            return;
-        } */
         if (empty($entity->getSlug())) {
             $entity->setSlug($this->slug->slug(strtolower($entity->getNomeStile())));
         }

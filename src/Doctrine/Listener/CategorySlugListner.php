@@ -15,10 +15,7 @@ class CategorySlugListner
     }
     public function prePersist(Categoria $entity, LifecycleEventArgs $lifecycleEventArgs)
     {
-        // $entity = $lifecycleEventArgs->getObject();
-        // if (!$entity instanceof Categoria) {
-        //     return;
-        // }
+
         if (empty($entity->getSlug())) {
             $entity->setSlug(strtolower($this->slugger->slug($entity->getNomeCategoria())));
         }
