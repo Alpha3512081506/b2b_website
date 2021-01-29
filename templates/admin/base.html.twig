@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -14,7 +15,7 @@
 						background-image: url('images/background.png');
 					}
 				</style>
-				{{ encore_entry_link_tags('app') }}
+				{# {{ encore_entry_link_tags('app') }} #}
 			{% endblock %}
 			<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
 		</head>
@@ -29,7 +30,7 @@
 				</main>
 
 				{% block javascripts %}
-					{{ encore_entry_script_tags('app') }}
+					{# {{ encore_entry_script_tags('app') }} #}
 				{% endblock %}
 				<footer>
 					{% include "admin/partials/_footer.html.twig" %}

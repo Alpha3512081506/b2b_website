@@ -9,12 +9,13 @@
 			{% endblock %}
 		</title>
 		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		{% block stylesheets %}
 			<style>/* body {
 					background-image: url('/images/background.png');
 				} */</style>
 
-		{{ encore_entry_link_tags('app') }}
+		{# {{ encore_entry_link_tags('app') }} #}
 	{% endblock %}
 </head>
 <body>
@@ -29,7 +30,7 @@
 		</main>
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{# {{ encore_entry_script_tags('app') }} #}
 		{% endblock %}
 		<footer></footer>
 	</body>

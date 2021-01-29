@@ -107,6 +107,11 @@ class User implements UserInterface
      */
     private $codiceUnivoco;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_activated;
+
     public function __construct()
     {
         $this->purchases = new ArrayCollection();
@@ -360,6 +365,18 @@ class User implements UserInterface
     public function setCodiceUnivoco(string $codiceUnivoco): self
     {
         $this->codiceUnivoco = $codiceUnivoco;
+
+        return $this;
+    }
+
+    public function getIsActivated(): ?bool
+    {
+        return $this->is_activated;
+    }
+
+    public function setIsActivated(bool $is_activated): self
+    {
+        $this->is_activated = $is_activated;
 
         return $this;
     }

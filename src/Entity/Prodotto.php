@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProdottoRepository;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProdottoRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Prodotto
 {
@@ -90,10 +92,24 @@ class Prodotto
      */
     private $purchaseItems;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_At;
+
     public function __construct()
     {
         $this->imaggines = new ArrayCollection();
         $this->purchaseItems = new ArrayCollection();
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function presPersist()
+    {
+        if (empty($this->created_At)) {
+            $this->created_At = new DateTime();
+        }
     }
 
     public function getId(): ?int
@@ -289,6 +305,18 @@ class Prodotto
                 $purchaseItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_At;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_At): self
+    {
+        $this->created_At = $created_At;
 
         return $this;
     }
