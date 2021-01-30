@@ -116,6 +116,15 @@ class User implements UserInterface
     {
         $this->purchases = new ArrayCollection();
     }
+    /**
+     * @ORM\PrePersist
+     */
+    public function presPersist()
+    {
+        if (empty($this->is_activated)) {
+            $this->is_activated =  false;
+        }
+    }
 
     public function getId(): ?int
     {
