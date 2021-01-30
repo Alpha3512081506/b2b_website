@@ -10,20 +10,20 @@ class PaginationService
     private $entityClass;
     private $limite = 10;
 
-    private $currentPage = 1;
+    private $page = 1;
     private $manager;
 
     public function __construct(EntityManagerInterface $entityManagerInterface)
     {
         $this->manager = $entityManagerInterface;
     }
-    public function getData()
+    public function getData($critere = [])
     {
         //calculer l'offset
-        $offest = $this->currentPage * $this->limite - $this->limite;
+        $offest = $this->page * $this->limite - $this->limite;
         //Demander le repository de trouver le repository
         $repository = $this->manager->getRepository($this->entityClass);
-        $data = $repository->findBy([], [], $this->limite, $offest);
+        $data = $repository->findBy([], $critere, $this->limite, $offest);
         // Renvoyer $les elements en questions
         return $data;
     }
@@ -60,14 +60,14 @@ class PaginationService
         return $this;
     }
 
-    public function getCurrentPage(): ?int
+    public function getPage(): ?int
     {
-        return $this->currentPage;
+        return $this->page;
     }
 
-    public function setCurrentPage(int $page): self
+    public function setPage($page)
     {
-        $this->currentPage = $page;
+        $this->page = $page;
 
         return $this;
     }

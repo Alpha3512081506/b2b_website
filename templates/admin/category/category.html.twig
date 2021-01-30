@@ -16,6 +16,7 @@
 						<th>
 							Nome Categoria
 						</th>
+						<th>Prodotti</th>
 						<th>
 							Aggiorna
 						</th>
@@ -25,17 +26,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for category in categories.findAll() %}
+					{% for category in categoriesCtrl %}
+
 						<tr>
 							<td>{{category.id}}</td>
 							<td>{{category.nomeCategoria}}</td>
+							<td>
+								<span class="badge badge-primary">{{category.prodotti|length}}</span>
+							</td>
 							<td>
 								<a href="" class="btn btn-success">
 									<i class="fa fa-edit"></i>
 								</a>
 							</td>
+
 							<td>
-								<a href="" class="btn btn-danger">
+								<a href="{{path('admin_category_delete',{'id': category.id})}}" class="btn btn-danger">
 									<i class="fa fa-trash-o"></i>
 								</a>
 							</td>
@@ -44,6 +50,7 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			{% include "admin/pagination/pagination.html.twig" with {'route':'admin_show_category','size':'sm'} %}
 		</div>
 		<div class="col-2">
 			<a href="{{path('category_create')}}" class="btn btn-primary">

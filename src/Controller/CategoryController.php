@@ -15,7 +15,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class CategoryController extends AbstractController
 {
     private $entityManagerInterface;
-    private $sluggerInterface;
     public function __construct(EntityManagerInterface $entityManagerInterface, SluggerInterface $sluggerInterface)
     {
         $this->entityManagerInterface = $entityManagerInterface;
@@ -34,7 +33,7 @@ class CategoryController extends AbstractController
             $this->entityManagerInterface->persist($category);
             $this->entityManagerInterface->flush();
             $this->addFlash('success', "la categoria è stata   creata");
-            return $this->redirectToRoute('home_index', []);
+            return $this->redirectToRoute('admin_show_category', []);
         }
         return $this->render('category/create.html.twig', [
             'formView' => $form->createView()
@@ -54,7 +53,7 @@ class CategoryController extends AbstractController
             $this->entityManagerInterface->flush();
             $this->addFlash('success', "la categoria è stata  modificato");
 
-            return $this->redirectToRoute('home_index', []);
+            return $this->redirectToRoute('admin_show_category', []);
         }
 
 

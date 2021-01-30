@@ -8,9 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=CategoriaRepository::class)
+ * @UniqueEntity("nomeCategoria",
+ *  message="La Categoria esiste già, Poi procedere ad agiungere i prodotti"
+ * )
  */
 class Categoria
 {
@@ -22,7 +27,7 @@ class Categoria
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @NotBlank()
      * @Length(min=3,max=255)
      */

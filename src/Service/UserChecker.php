@@ -17,6 +17,7 @@ class UserChecker implements UserCheckerInterface
      */
     public function checkPreAuth(UserInterface $user)
     {
+
         if ($user instanceof User) {
             if ($user->getIsActivated() === false) {
                 throw new  AccountStatusException("Il Tuo Account non è encora confermato dall'Amministrator");
