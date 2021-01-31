@@ -4,12 +4,14 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<title>
+		<title>RicomputerB2BShop-
 			{% block title %}RicomputerShop-Welcome!
 			{% endblock %}
 		</title>
 		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/footer.css">
+
 		{% block stylesheets %}
 			<style>/* body {
 					background-image: url('/images/background.png');
@@ -22,7 +24,7 @@
 	{% include "shared/_navbar.html.twig" %}
 	<main role="main">
 		{% include "shared/_carousel.html.twig" %}
-		<div class="container mt-5">
+		<div class="container-fluid mt-5">
 			{{ include('product/partials/_flash_messages.html.twig') }}
 			<div class="container"> {% block body %}{% endblock %}
 				</div>
@@ -32,6 +34,10 @@
 		{% block javascripts %}
 			{# {{ encore_entry_script_tags('app') }} #}
 		{% endblock %}
-		<footer></footer>
+		<footer>
+			<div class="container-fluid my-5">
+				{% include "shared/_footer.html.twig" %}
+			</div>
+		</footer>
 	</body>
 </html>
