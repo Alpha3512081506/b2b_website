@@ -54,12 +54,11 @@ class ProdottoType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('coverImage', UrlType::class, [
-
-                'attr' => [
-                    'placeholder' => 'imaggine del prodotto',
-                    'class' => 'form-control'
-                ]
+            ->add('coverImage', FileType::class, [
+                'label' => false,
+                'multiple' => false,
+                'mapped' => false,
+                'required' => true
             ])
             ->add('dimensioniSchermo', TextType::class, [
                 'label' => 'Dimensioni dello Schermo del Prodotto',

@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Imaggine;
+
 use App\Entity\Prodotto;
 use App\Entity\Categoria;
 use App\Form\ProdottoType;
 use App\Repository\ProdottoRepository;
 use App\Repository\CategoriaRepository;
+use App\Service\UploaderFile;
+use App\Service\UploaderImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +18,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ProductController extends AbstractController
 {
@@ -65,7 +68,7 @@ class ProductController extends AbstractController
     /**
      *  @Route("/admin/product/{id}/edit", name="prodotto_edit")
      */
-    public function edit($id, ProdottoRepository $prodottoRepository, Request $request): Response
+    public function edit($id, ProdottoRepository $prodottoRepository, Request $request, UploaderImage $uploaderImage): Response
     {
         $prodotto = $prodottoRepository->find($id);
         if (!$prodotto) {
@@ -74,7 +77,11 @@ class ProductController extends AbstractController
         $form = $this->createForm(ProdottoType::class, $prodotto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $image = $form->get('coverImage')->getData();
+            $fichier =  md5(uniqid()) . '.' . $image->guessExtension();
+            $uploaderImage->move($image, $fichier);
+            $prodotto->setCoverImage($fichier);
+            $this->entityManagerInterface->persist($prodotto);
             $this->entityManagerInterface->flush();
             $this->addFlash('success', "Il prodotto è stato modificato!");
 
@@ -93,7 +100,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/admin/product/create", name="prodotto_create")
      */
-    public function create(Request $request, SluggerInterface $sluggerInterface): Response
+    public function create(Request $request, UploaderImage $uploaderImage): Response
     {
         /*  $image = new Imaggine;
         $image->setCaption("caption")->setLinkImaggine("uri"); */
@@ -105,7 +112,15 @@ class ProductController extends AbstractController
         //$form = $builder->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $prodotto->setSlug(strtolower($sluggerInterface->slug($prodotto->getNomeStile())));
+            //  $prodotto->setSlug(strtolower($sluggerInterface->slug($prodotto->getNomeStile())));
+            $image = $form->get('coverImage')->getData();
+            //$image->guessExtension();
+            $fichier =  md5(uniqid()) . '.' . $image->guessExtension();
+            $uploaderImage->move($image, $fichier);
+
+
+
+            $prodotto->setCoverImage($fichier);
             $this->entityManagerInterface->persist($prodotto);
             $this->entityManagerInterface->flush();
             $this->addFlash('success', "Il prodotto è stato modificato");
